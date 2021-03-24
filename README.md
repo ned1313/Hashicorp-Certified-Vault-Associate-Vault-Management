@@ -1,0 +1,1 @@
+# -Hashicorp-Certified-Vault-Associate-Vault-Management
