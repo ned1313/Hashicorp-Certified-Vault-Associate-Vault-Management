@@ -29,3 +29,5 @@ override.tf.json
 # example: *tfplan*
 **/certs/
 **/data/
+
+**/seal_values.txt
