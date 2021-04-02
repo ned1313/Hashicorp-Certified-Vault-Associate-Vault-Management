@@ -10,6 +10,7 @@ export VAULT_SKIP_VERIFY=true
 
 # Make sure vault isn't sealed
 vault status
+vault login
 
 # And now we'll enable Userpass and add some users
 vault auth enable userpass
