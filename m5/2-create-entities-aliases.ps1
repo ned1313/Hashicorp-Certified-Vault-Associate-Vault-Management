@@ -21,10 +21,12 @@ vault write identity/alias name=fprefect mount_accessor=$mount_accessor canonica
 # Vault Agent later
 vault write identity/entity name=vaultagent
 
+$role_id=$(vault read auth/approle/role/web-role/role-id -format=json) | ConvertFrom-Json
+
 $mount_accessor=$authmethods.data."approle/".accessor
 $vaultagent_id=$(vault read identity/entity/name/vaultagent -format=json) | ConvertFrom-Json
 $canonical_id=$vaultagent_id.data.id
-vault write identity/alias name=vaultagent mount_accessor=$mount_accessor canonical_id=$canonical_id
+vault write identity/alias name=$($role_id.data.role_id) mount_accessor=$mount_accessor canonical_id=$canonical_id
 
 # Now onto creating an internal group for Arthur and Ford as administrators
 vault path-help identity/group

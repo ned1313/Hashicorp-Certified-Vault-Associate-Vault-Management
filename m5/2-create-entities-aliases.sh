@@ -21,9 +21,13 @@ vault write identity/alias name=fprefect \
 # Vault Agent later
 vault write identity/entity name=vaultagent
 
+# We need to get the role-id for the name
+role_id=$(vault read auth/approle/role/web-role/role-id -format=json | jq .data.role_id -r)
+
 mount_accessor=$(vault read sys/auth/ -format=json | jq .data.\"approle/\".accessor -r)
 canonical_id=$(vault read identity/entity/name/vaultagent -format=json | jq .data.id -r)
-vault write identity/alias name=vaultagent \
+
+vault write identity/alias name=$role_id \
   mount_accessor=$mount_accessor \
   canonical_id=$canonical_id
 
