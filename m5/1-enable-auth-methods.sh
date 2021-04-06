@@ -23,7 +23,7 @@ vault auth enable approle
 
 vault write auth/approle/role/web-role \
     secret_id_ttl=10m \
-    token_num_uses=10 \
+    token_num_uses=0 \
     token_ttl=60m \
     token_max_ttl=120m \
     secret_id_num_uses=40
