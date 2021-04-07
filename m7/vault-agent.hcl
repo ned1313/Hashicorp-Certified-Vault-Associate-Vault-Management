@@ -1,5 +1,6 @@
 vault {
     address = "https://127.0.0.1:8200"
+    tls_skip_verify = "true"
 }
 
 auto_auth {
